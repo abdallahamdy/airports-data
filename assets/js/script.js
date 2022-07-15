@@ -17,7 +17,7 @@ fetch(dataUrl).then(response => {
 });
 
 var populateAirportsArr = function (airportsArr) {
-    var airportObjectsArr = [];
+    // var airportObjectsArr = [];
     console.log(airportsArr);
 
     for(var i = 0; i < airportsArr.length; i++){
