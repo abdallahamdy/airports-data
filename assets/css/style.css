@@ -1,27 +1,34 @@
 body {
     width: 100%;
     min-height: 100vh;
-    position: fixed;
-    /* background-color: #05305c; */
+    /* position: fixed; */
+    /* background-color: #6D7F86; */
+    font-family: 'Lato', sans-serif;
+    
   }
-
-.container {
-    background-color: white;
-}
 
 .content-container {
     display: flex;
     height: 100%;
+}
 
+footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* background-color: #0096EF; */
+    /* background-color: #425A63; */
+    width: 100%;
+    padding: 40px 35px;
 }
 
 .header-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
-    border: 10px black solid;
-    /* background-color: rgb(39, 39, 226); */
+    /* border: 10px black solid; */
+    background-color: #02699C;
 }
 
 .weather-container {
@@ -31,7 +38,7 @@ body {
 }
 
 .title {
-    color: black;
+    color: burlywood;
     font: 5em sans-serif;
 }
 .weather-banner {
@@ -46,9 +53,17 @@ body {
     width: 50px;
 }
 
+.intro-text-div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin-left: 30px;
+}
+
 .banner-text {
     /* width: 100%; */
-    color: black;
+    color: orange;
     margin-top: 12px;
 
     animation: text-scrolling 15s linear infinite;
@@ -78,15 +93,69 @@ body {
 }
 
 .list-container {
+    margin-top: 20px;
     width: 25%;
-    border: 3px green solid;
+    /* border: 3px green solid; */
+    /* background-color: #6D7F86; */
 }
+
+.card-container-div { 
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .airport-data {
     width: 75%;
     padding-left: 50px;
-    display: flex;
-    flex-direction: column;
-    border: 3px blue solid;
-    justify-content: center;
-    align-items: center;
+    /* border: 3px blue solid; */
 }
+
+.airport-title {
+    margin-top: 50px;
+    /* background-color: #02699C; */
+}
+
+.card {
+    margin: 10px;
+}
+
+.list-card {
+    height:100px;
+    overflow-y: scroll;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+.list-card-item {
+    list-style-type: none;
+    /* text-align: left; */
+    margin: 0;
+    padding: 0;
+}
+
+.list-group-item:hover {
+    /* background-color: rgb(122, 185, 226); */
+    background-color: burlywood;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

@@ -6,6 +6,8 @@ var dataUrl = "./data.json";
 
 var airportObjArr = [];
 
+var dataCards = ["Fuel Types", "Radio Frequencies", "Weather", "Runways"];
+
 fetch(dataUrl).then(response => {
     response.json().then(function(data) {
         populateAirportsArr(data.results);
@@ -67,12 +69,88 @@ var displayAirportList = function (){
 }
 
 var displayAirportData = function(id){
-    $(".intro-text").remove();
+    $(".airport-data").empty();
+
     var airportObject = airportObjArr.find(airport => airport.identifier === id);
-    
+
+    var airportTitleDiv = $("<div>").addClass("airport-title-container");
     var airportTitleEl = $("<h3>").addClass("airport-title").text(airportObject.identifier + ", " + airportObject.name);
 
-    $(".airport-data").append(airportTitleEl);
+    airportTitleDiv.append(airportTitleEl);
+
+    var cardsContainerDiv = $("<div>").addClass("card-container-div");
+
+    var fuelCard = $("<div>").addClass("card");
+    var radioCard = $("<div>").addClass("card");
+    var weatherCard = $("<div>").addClass("card");
+    
+
+    var fuelHeaderEl = $("<div>").addClass("card-header").text("Fuel Available");
+    var radioHeaderEl = $("<div>").addClass("card-header").text("Radio Frequencies");
+    var weatherHeaderEl = $("<div>").addClass("card-header").text("Weather");
+
+    var fuelCardUlEl = $("<ul>").addClass("list-card list-card-flush");
+    var radioCardUlEl = $("<ul>").addClass("list-card list-card-flush");
+    var weatherCardUlEl = $("<ul>").addClass("list-card list-card-flush");
+
+    for(var i = 0; i < airportObject.fuel.length; i++){
+        var cardLiEl = $("<li>").addClass("list-card-item").text(airportObject.fuel[i].type + ": " + airportObject.fuel[i].price);
+        fuelCardUlEl.append(cardLiEl);
+    }
+
+    fuelCard.append(fuelHeaderEl);
+    fuelCard.append(fuelCardUlEl);
+
+    // radio object
+    var radioObject = airportObject.radioFrequencies;
+    Object.keys(radioObject).forEach(key => {
+        var cardLiEl = $("<li>").addClass("list-card-item").text(key + ": " + radioObject[key]);
+        radioCardUlEl.append(cardLiEl);
+    });
+    
+    radioCard.append(radioHeaderEl);
+    radioCard.append(radioCardUlEl);
+
+    // weather object
+    var weatherObject = airportObject.weather;
+    Object.keys(weatherObject).forEach(key => {
+        var cardLiEl = $("<li>").addClass("list-card-item").text(key + ": " + weatherObject[key]);
+        weatherCardUlEl.append(cardLiEl);
+    });
+
+    weatherCard.append(weatherHeaderEl);
+    weatherCard.append(weatherCardUlEl);
+
+    cardsContainerDiv.append(fuelCard);
+    cardsContainerDiv.append(radioCard);
+    cardsContainerDiv.append(weatherCard);
+    
+    // runways object
+    var runwaysArray = airportObject.runways;
+    for(var i = 0; i < runwaysArray.length; i++){
+        var runwayCard = $("<div>").addClass("card");
+        var runwayCardUlEl = $("<ul>").addClass("list-card list-card-flush");
+
+        if(runwaysArray[i].runway_identifier){
+            var runwayHeaderEl = $("<div>").addClass("card-header").text("Runway #" + runwaysArray[i].runway_identifier);
+        } else {
+            var runwayHeaderEl = $("<div>").addClass("card-header").text("Runway #" + runwaysArray[i].runway_number);
+        }
+        
+
+        Object.keys(runwaysArray[i]).forEach(key => {
+            var cardLiEl = $("<li>").addClass("list-card-item").text(key + ": " + runwaysArray[i][key]);
+            runwayCardUlEl.append(cardLiEl);
+        });
+        runwayCard.append(runwayHeaderEl);
+        runwayCard.append(runwayCardUlEl);
+        cardsContainerDiv.append(runwayCard);   
+    }
+
+    
+    $(".airport-data").append(airportTitleDiv);
+    $(".airport-data").append(cardsContainerDiv);
+
 }
 
 $(document).ready(function(){
