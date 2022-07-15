@@ -1,7 +1,6 @@
 var displayBannerCounter = 0;
 var bannerInterval;
 
-// format the github api url 
 var dataUrl = "./data.json";
 
 var airportObjArr = [];
@@ -34,7 +33,6 @@ var populateAirportsArr = function (airportsArr) {
     }
     displayWeatherBanner();
     displayAirportList();
-    // bannerInterval = setInterval(displayWeatherBanner, 1000, airportObjectsArr);
 }
 
 var displayWeatherBanner = function () {
@@ -98,6 +96,9 @@ var displayAirportData = function(id){
         fuelCardUlEl.append(cardLiEl);
     }
 
+    // var fuelIconEl = $("img").addClass("card-header").attr("src", "./assets/css/images/fuel-icon.svg");
+    // fuelCard.append(fuelIconEl);
+
     fuelCard.append(fuelHeaderEl);
     fuelCard.append(fuelCardUlEl);
 
@@ -124,7 +125,13 @@ var displayAirportData = function(id){
     cardsContainerDiv.append(fuelCard);
     cardsContainerDiv.append(radioCard);
     cardsContainerDiv.append(weatherCard);
-    
+
+    var pEl = $("<h5>").addClass("runways-section-title").text("Runways:");
+    var brEl = $("<br>").addClass("my-break");
+    cardsContainerDiv.append(brEl);
+    cardsContainerDiv.append(pEl);
+    cardsContainerDiv.append(brEl);
+
     // runways object
     var runwaysArray = airportObject.runways;
     for(var i = 0; i < runwaysArray.length; i++){

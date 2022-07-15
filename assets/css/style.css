@@ -90,6 +90,7 @@ footer {
 
 .form-control{
     width: 100%;
+    border: 2px solid lightgrey;
 }
 
 .list-container {
@@ -116,10 +117,17 @@ footer {
 .airport-title {
     margin-top: 50px;
     /* background-color: #02699C; */
+    border-bottom: 3px solid #02699C;
+    margin-right: 50px;
 }
 
 .card {
     margin: 10px;
+    width: 30%;
+}
+
+.card-header img {
+    display: inline;
 }
 
 .list-card {
@@ -137,9 +145,22 @@ footer {
     padding: 0;
 }
 
+.list-group {
+    border: 2px solid lightgrey;
+}
+
+.card img {
+    width: 100px;
+}
+
 .list-group-item:hover {
     /* background-color: rgb(122, 185, 226); */
     background-color: bisque;
+}
+
+.runways-section-title {
+    width: 100%;
+    font-style: oblique;
 }
 
 /* width */
@@ -160,4 +181,9 @@ footer {
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+
+  .my-break {
+    flex-basis: 100%;
+    height: 0;
   }
