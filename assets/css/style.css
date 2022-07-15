@@ -1,0 +1,92 @@
+body {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    /* background-color: #05305c; */
+  }
+
+.container {
+    background-color: white;
+}
+
+.content-container {
+    display: flex;
+    height: 100%;
+
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 10px black solid;
+    /* background-color: rgb(39, 39, 226); */
+}
+
+.weather-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.title {
+    color: black;
+    font: 5em sans-serif;
+}
+.weather-banner {
+    text-align: center;
+    width: 50%;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+}
+
+.weather-icon {
+    width: 50px;
+}
+
+.banner-text {
+    /* width: 100%; */
+    color: black;
+    margin-top: 12px;
+
+    animation: text-scrolling 15s linear infinite;
+}
+
+@keyframes text-scrolling {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+}
+
+#airport-list {
+    height:300px; 
+    width:100%;
+}
+
+#airport-list {
+    overflow:hidden; 
+    overflow-y:scroll;
+}
+
+.form-control{
+    width: 100%;
+}
+
+.list-container {
+    width: 25%;
+    border: 3px green solid;
+}
+.airport-data {
+    width: 75%;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    border: 3px blue solid;
+    justify-content: center;
+    align-items: center;
+}

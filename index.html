@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Document</title>
+</head>
+<body>
+    
+    <header class="header-container">
+        <div class="weather-container">
+            <img class="weather-icon" src="./assets/css/images/weather_icon.svg">
+            <span class="weather-banner">
+                <!-- place for dynamically created <p class="banner-text"> -->
+            </span>
+        </div>
+        <h1 class="title">Airport Network</h1>
+        
+    </header>
+
+    <div class="content-container">
+        <div class="list-container">
+            <h2>Filterable List</h2>
+            <p>Type something in the input field to search the list for specific items:</p>  
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <br>
+            <ul class="list-group" id="airport-list">
+                <!-- <li class="list-group-item">First item</li> -->
+            </ul>
+        </div>
+
+        <div class="airport-data">
+            <h3 class="intro-text">Welcome to the International Airport Portal.</h3>
+            <h4 class="intro-text">Please click on one of the airports for more details.</h4>
+        </div>
+    </div>
+        
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
