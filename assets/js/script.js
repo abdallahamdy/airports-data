@@ -85,6 +85,8 @@ var displayAirportData = function(id){
     
 
     var fuelHeaderEl = $("<div>").addClass("card-header").text("Fuel Available");
+    // fuelHeaderEl.innerHTML += '<img src="./assets/css/images/fuel-icon.svg" />';
+
     var radioHeaderEl = $("<div>").addClass("card-header").text("Radio Frequencies");
     var weatherHeaderEl = $("<div>").addClass("card-header").text("Weather");
 
@@ -176,26 +178,68 @@ $(document).ready(function(){
   })
 
 var displayCharts = function() {
-    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yValues = [55, 49, 44, 24, 15];
-    var barColors = ["red", "green","blue","orange","brown"];
+    // var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    // var yValues = [55, 49, 44, 24, 15];
+    // var barColors = ["red", "green","blue","orange","brown"];
+
+    var xValues = [];
+    var yValues = [];
+
+    for(var i = 0; i < airportObjArr.length; i++){
+        var airID = airportObjArr[i].identifier;
+        var jetFuel = airportObjArr[i].fuel[1].price;
+
+        var fuelPrice = jetFuel.substr(1,4);
+        
+        xValues.push(airID);
+        yValues.push(fuelPrice);
+    }
+
+    console.log("VALUES");
+    console.log(xValues);
+    console.log(yValues);
 
     var canvasEl = $("<canvas>").attr("id","myChart");
     $(".airport-data").append(canvasEl);
+
 
     new Chart("myChart", {
     type: "bar",
     data: {
         labels: xValues,
         datasets: [{
-        backgroundColor: barColors,
-        data: yValues
+        backgroundColor: 'green',
+        data: yValues,
+        label: '$/gal'
         }]
     },
-    options: {}
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }]
+        },
+        title: {
+            display: 'true',
+            text: 'Fuel Prices',
+            fontSize: 50
+        },
+        legend: {
+            display: true,
+            labels: {
+                fontSize: 30
+            }
+        }
+    }
     });
 
-    
     $(".charts-area").append(canvasEl);
 
     //<canvas id="myChart" style="width:100%;max-width:600px"></canvas>

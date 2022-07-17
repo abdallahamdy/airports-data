@@ -1,45 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 body {
-    width: 100%;
-    min-height: 100vh;
+    /* width: 10; */
+    /* height: 100vw; */
+    /* height: ; */
     /* position: fixed; */
-    /* background-color: #6D7F86; */
+    background-color: bisque;
+    /* background-color: lightgrey; */
     font-family: 'Lato', sans-serif;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
   }
 
 .content-container {
     display: flex;
-    height: 100%;
-}
+    min-height: 82vh;
+    width: 80%;
+    background-color: white;
+}   
 
 footer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    /* background-color: #0096EF; */
+    background-color: #02699C;
     /* background-color: #425A63; */
+    /* width: 100%; */
+    height: 3vh;
     width: 100%;
-    padding: 40px 35px;
 }
+
+/* 
+header 20%
+content 70%
+footer 10% */
 
 .header-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     text-align: center;
     /* border: 10px black solid; */
     background-color: #02699C;
+    height: 15vh;
+    width: 100%; 
 }
 
 .weather-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: 50%;
 }
 
 .title {
     color: burlywood;
     font: 5em sans-serif;
+    margin-right: 10%;
 }
 .weather-banner {
     text-align: center;
@@ -56,21 +76,15 @@ footer {
 .intro-text-div {
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: space-between;
-    margin-left: 30px;
-}
-
-.charts-area {
-    display: flex;
 }
 
 .banner-text {
     /* width: 100%; */
     color: orange;
     margin-top: 12px;
-
-    animation: text-scrolling 15s linear infinite;
+    width: 100%;
+    animation: text-scrolling 25s linear infinite;
 }
 
 @keyframes text-scrolling {
@@ -85,9 +99,6 @@ footer {
 #airport-list {
     height:300px; 
     width:100%;
-}
-
-#airport-list {
     overflow:hidden; 
     overflow-y:scroll;
 }
@@ -98,13 +109,15 @@ footer {
 }
 
 .list-container {
-    margin-top: 20px;
+    padding-top: 80px;
     margin-left: 20px;
     padding-right: 10px;
     width: 25%;
     border-right: 3px solid #02699C;
+    height: 82vh;
     /* border: 3px green solid; */
     /* background-color: #6D7F86; */
+    /* border: 3px green solid; */
 }
 
 .card-container-div { 
@@ -118,10 +131,22 @@ footer {
     /* border: 3px blue solid; */
 }
 
+.title-elements {
+    display: flex;
+    flex-direction: column;
+}
+
+.charts-area {
+    margin-top: 60px;
+    margin-left: 100px;
+    /* border: 3px blue solid; */
+    display: block;
+}
+
 .airport-title {
     margin-top: 50px;
     /* background-color: #02699C; */
-    border-bottom: 3px solid #02699C;
+    /* border-bottom: 3px solid #02699C; */
     margin-right: 50px;
 }
 
@@ -130,8 +155,9 @@ footer {
     width: 30%;
 }
 
-.card-header img {
-    display: inline;
+.card-header {
+    color: #02699C;
+    font-weight:900;
 }
 
 .list-card {
@@ -156,7 +182,8 @@ footer {
 
 .list-group-item:hover {
     /* background-color: rgb(122, 185, 226); */
-    background-color: bisque;
+    background-color: #02699C;
+    color: bisque;
 }
 
 .runways-section-title {
@@ -167,29 +194,33 @@ footer {
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
+}
   
-  /* Track */
-  ::-webkit-scrollbar-track {
+/* Track */
+::-webkit-scrollbar-track {
     background: #f1f1f1;
-  }
+}
   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: #888;
-  }
+}
   
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
+}
 
-  .my-break {
+.my-break {
     flex-basis: 100%;
     height: 0;
-  }
+}
 
-  canvas{
-    width:300px !important;
-    height:200px !important;
-  }
+.charts-area {
+    display: flex;
+}
+
+canvas{
+    width: 600px !important;
+    height: 300px !important;
+}
