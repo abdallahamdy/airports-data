@@ -1,90 +1,53 @@
 * {
+    margin: 0;
+    padding: 0;
+}
+
+body { 
+    max-height: 100vh;
+}
+
+#weather-icon {
+    width: 50px;
+}
+
+#page-title {
+    color: orange;
+    font-size: 35px;
+    width: 20%;
+    /* background-color: #212529; */
+    margin: 0;
+    padding-left: 20px;
+}
+
+.my-nav{
     padding: 0;
     margin: 0;
 }
 
-body {
-    /* width: 10; */
-    /* height: 100vw; */
-    /* height: ; */
-    /* position: fixed; */
-    background-color: bisque;
-    /* background-color: lightgrey; */
-    font-family: 'Lato', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-  }
-
-.content-container {
-    display: flex;
-    min-height: 82vh;
-    width: 80%;
-    background-color: white;
-}   
-
-footer {
-    background-color: #02699C;
-    /* background-color: #425A63; */
-    /* width: 100%; */
-    height: 3vh;
-    width: 100%;
-}
-
-/* 
-header 20%
-content 70%
-footer 10% */
-
-.header-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    /* border: 10px black solid; */
-    background-color: #02699C;
-    height: 15vh;
-    width: 100%; 
-}
-
 .weather-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
+    width: 100%;
+    /* border: 3px red solid; */
+    justify-content: end;
+    margin-right: 30px;
 }
 
-.title {
-    color: burlywood;
-    font: 5em sans-serif;
-    margin-right: 10%;
-}
 .weather-banner {
-    text-align: center;
-    width: 50%;
-    border-radius: 5px;
+    /* height: 50px; */
     overflow: hidden;
-    display: flex;
-}
-
-.weather-icon {
-    width: 50px;
-}
-
-.intro-text-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
+    width: 20%;
+    /* background: yellow; */
+    /* border: 1px solid orange; */
 }
 
 .banner-text {
-    /* width: 100%; */
     color: orange;
-    margin-top: 12px;
-    width: 100%;
-    animation: text-scrolling 25s linear infinite;
+    vertical-align:bottom;
+    padding-top: 20px;
+    transform:translateX(100%);
+    animation: text-scrolling 15s linear infinite;
 }
 
 @keyframes text-scrolling {
@@ -92,62 +55,69 @@ footer 10% */
       transform: translateX(100%);
     }
     to {
-      transform: translateX(-100%);
+      transform: translateX(-200%);
     }
 }
 
-#airport-list {
-    height:300px; 
-    width:100%;
-    overflow:hidden; 
-    overflow-y:scroll;
+.charts-area {
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    margin-left: 9.5%;
 }
 
-.form-control{
+.carousel-inner {
+    /* border: 3px pink solid; */
+    margin-top: 5%;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.carousel-control-next,
+.carousel-control-prev, .carousel-indicators {
+    filter: invert(100%);
+}
+
+.home-div {
+    min-width: 100%;
+    min-height: 100%;
+    /* display: flex; */
+}
+
+.content-container {
+    display: flex;
+    padding-top: 63px;
+    height: 92.5vh;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    border: 2px solid lightgrey;
+    height: 60px;
+    line-height: 60px;
+    /* background-color: #212529; */
+    background-color: orange;
+}
+
+.footer-div {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .list-container {
-    padding-top: 80px;
-    margin-left: 20px;
-    padding-right: 10px;
-    width: 25%;
-    border-right: 3px solid #02699C;
-    height: 82vh;
-    /* border: 3px green solid; */
-    /* background-color: #6D7F86; */
-    /* border: 3px green solid; */
+    width: 20%;
+    background-color: #212529;
 }
 
-.card-container-div { 
-    display: flex;
-    flex-wrap: wrap;
+.form-control {
+    width: 90%;
+    margin-top: 5%;
+    margin-left: 5%;
 }
 
-.airport-data {
-    width: 75%;
-    padding-left: 50px;
-    /* border: 3px blue solid; */
-}
-
-.title-elements {
-    display: flex;
-    flex-direction: column;
-}
-
-.charts-area {
-    margin-top: 60px;
-    margin-left: 100px;
-    /* border: 3px blue solid; */
-    display: block;
-}
-
-.airport-title {
-    margin-top: 50px;
-    /* background-color: #02699C; */
-    /* border-bottom: 3px solid #02699C; */
-    margin-right: 50px;
+.list-container p {
+    font: white;
 }
 
 .card {
@@ -156,8 +126,8 @@ footer 10% */
 }
 
 .card-header {
-    color: #02699C;
-    font-weight:900;
+    /* color: orange; */
+    font-weight: bold;
 }
 
 .list-card {
@@ -176,19 +146,47 @@ footer 10% */
 }
 
 .list-group {
-    border: 2px solid lightgrey;
+    /* height: 100%; */
+    width: 100%;
+    background-color: grey;
+    border-top: 3px #212529 solid;
 }
 
+.list-group-item {
+    background-color: #4d535a;
+    height: 10%;
+    color: beige;
+    border-top: 1px beige solid;
+    border-bottom: 1px beige solid;
+}
 
 .list-group-item:hover {
     /* background-color: rgb(122, 185, 226); */
-    background-color: #02699C;
-    color: bisque;
+    background-color: #212529;
+    color: orange;
 }
 
 .runways-section-title {
     width: 100%;
     font-style: oblique;
+}
+
+.card-container-div { 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.airport-data {
+    width: 80%;
+    /* padding-left: 50px; */
+    /* border: 3px blue solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+.title-elements {
+    display: flex;
+    flex-direction: column;
 }
 
 /* width */
@@ -211,16 +209,3 @@ footer 10% */
     background: #555;
 }
 
-.my-break {
-    flex-basis: 100%;
-    height: 0;
-}
-
-.charts-area {
-    display: flex;
-}
-
-canvas{
-    width: 600px !important;
-    height: 300px !important;
-}

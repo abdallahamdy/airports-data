@@ -38,7 +38,7 @@ var populateAirportsArr = function (airportsArr) {
 
 var displayWeatherBanner = function () {
 
-    var spanEl = $("span").addClass("weather-banner");
+    // var spanEl = $("span").addClass("weather-banner");
     var bannerText = "";
 
     for(var i = 0; i < airportObjArr.length; i++){
@@ -49,8 +49,8 @@ var displayWeatherBanner = function () {
         
     }
     var pEl = $("<p>").addClass("banner-text").text(bannerText);
-    spanEl.append(pEl);
-    $(".weather-container").append(spanEl)
+    // spanEl.append(pEl);
+    $(".weather-banner").append(pEl)
 }
 
 var displayAirportList = function (){
@@ -178,38 +178,41 @@ $(document).ready(function(){
   })
 
 var displayCharts = function() {
-    // var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    // var yValues = [55, 49, 44, 24, 15];
-    // var barColors = ["red", "green","blue","orange","brown"];
 
     var xValues = [];
-    var yValues = [];
+    var yJetValues = [];
+    var yLlValues = [];
 
     for(var i = 0; i < airportObjArr.length; i++){
         var airID = airportObjArr[i].identifier;
+        var llFuel = airportObjArr[i].fuel[0].price;
         var jetFuel = airportObjArr[i].fuel[1].price;
 
-        var fuelPrice = jetFuel.substr(1,4);
+        var jetFuelPrice = jetFuel.substr(1,4);
+        var llFuelPrice = llFuel.substr(1,4);
         
         xValues.push(airID);
-        yValues.push(fuelPrice);
+        yJetValues.push(jetFuelPrice);
+        yLlValues.push(llFuelPrice);
     }
 
-    console.log("VALUES");
-    console.log(xValues);
-    console.log(yValues);
+    var jetFuelChartsAreaEl = $("<div>").addClass("charts-area");
 
-    var canvasEl = $("<canvas>").attr("id","myChart");
-    $(".airport-data").append(canvasEl);
+    var jetFuelCanvasEl = $("<canvas>").attr("id","jetFuelChart");
+    jetFuelChartsAreaEl.append(jetFuelCanvasEl);
 
+    var jetCarouselItemEl = $("<div>").addClass("carousel-item active");
+    jetCarouselItemEl.append(jetFuelChartsAreaEl);
 
-    new Chart("myChart", {
+    $(".carousel-inner").append(jetCarouselItemEl);
+
+    new Chart("jetFuelChart", {
     type: "bar",
     data: {
         labels: xValues,
         datasets: [{
-        backgroundColor: 'green',
-        data: yValues,
+        backgroundColor: 'darkgreen',
+        data: yJetValues,
         label: '$/gal'
         }]
     },
@@ -228,7 +231,7 @@ var displayCharts = function() {
         },
         title: {
             display: 'true',
-            text: 'Fuel Prices',
+            text: 'Jet Fuel Prices',
             fontSize: 50
         },
         legend: {
@@ -240,9 +243,52 @@ var displayCharts = function() {
     }
     });
 
-    $(".charts-area").append(canvasEl);
 
-    //<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    var lLFuelChartsAreaEl = $("<div>").addClass("charts-area");
 
+    var lLFuelCanvasEl = $("<canvas>").attr("id","lLFuelChart");
+    lLFuelChartsAreaEl.append(lLFuelCanvasEl);
+
+    var lLCarouselItemEl = $("<div>").addClass("carousel-item");
+    lLCarouselItemEl.append(lLFuelChartsAreaEl);
+
+    $(".carousel-inner").append(lLCarouselItemEl);
+
+    new Chart("lLFuelChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [{
+        backgroundColor: 'green',
+        data: yLlValues,
+        label: '$/gal'
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }]
+        },
+        title: {
+            display: 'true',
+            text: 'LL Fuel Prices',
+            fontSize: 50
+        },
+        legend: {
+            display: true,
+            labels: {
+                fontSize: 30
+            }
+        }
+    }
+    });
 
 }
