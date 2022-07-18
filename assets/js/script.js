@@ -38,7 +38,6 @@ var populateAirportsArr = function (airportsArr) {
 
 var displayWeatherBanner = function () {
 
-    // var spanEl = $("span").addClass("weather-banner");
     var bannerText = "";
 
     for(var i = 0; i < airportObjArr.length; i++){
@@ -49,7 +48,7 @@ var displayWeatherBanner = function () {
         
     }
     var pEl = $("<p>").addClass("banner-text").text(bannerText);
-    // spanEl.append(pEl);
+
     $(".weather-banner").append(pEl)
 }
 
@@ -68,7 +67,8 @@ var displayAirportList = function (){
 }
 
 var displayAirportData = function(id){
-    $(".airport-data").empty();
+    $(".home-div").hide();
+    $(".airport-info").empty();
 
     var airportObject = airportObjArr.find(airport => airport.identifier === id);
 
@@ -158,42 +158,36 @@ var displayAirportData = function(id){
     }
 
     
-    $(".airport-data").append(airportTitleDiv);
-    $(".airport-data").append(cardsContainerDiv);
+    $(".airport-info").append(airportTitleDiv);
+    $(".airport-info").append(cardsContainerDiv);
 
 }
-
-$(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#airport-list li").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  });
-
-  $(".list-group").on('click', 'li.list-group-item',function(){
-    var airportID = this.id.slice(-4);
-    displayAirportData(airportID);
-  })
 
 var displayCharts = function() {
 
     var xValues = [];
     var yJetValues = [];
     var yLlValues = [];
+    var yTempValues = [];
+    var yVisibilityValues = [];
 
     for(var i = 0; i < airportObjArr.length; i++){
         var airID = airportObjArr[i].identifier;
         var llFuel = airportObjArr[i].fuel[0].price;
         var jetFuel = airportObjArr[i].fuel[1].price;
+        var weather = airportObjArr[i].weather.temperature;
+        var visibility = airportObjArr[i].weather.visibility;
 
         var jetFuelPrice = jetFuel.substr(1,4);
         var llFuelPrice = llFuel.substr(1,4);
-        
+        var weatherInt = weather.substr(0,2);
+        var visibilityInt = visibility.replace(/\D/g, ""); //var res = str.replace(/\D/g, "");
+
         xValues.push(airID);
         yJetValues.push(jetFuelPrice);
         yLlValues.push(llFuelPrice);
+        yTempValues.push(weatherInt);
+        yVisibilityValues.push(visibilityInt);
     }
 
     var jetFuelChartsAreaEl = $("<div>").addClass("charts-area");
@@ -211,7 +205,7 @@ var displayCharts = function() {
     data: {
         labels: xValues,
         datasets: [{
-        backgroundColor: 'darkgreen',
+        backgroundColor: '#16796F',
         data: yJetValues,
         label: '$/gal'
         }]
@@ -233,7 +227,7 @@ var displayCharts = function() {
             display: 'true',
             text: 'Jet Fuel Prices',
             fontSize: 50,
-            fontColor: 'black'
+            // fontColor: 'black'
         },
         legend: {
             display: true,
@@ -260,7 +254,7 @@ var displayCharts = function() {
     data: {
         labels: xValues,
         datasets: [{
-        backgroundColor: 'green',
+        backgroundColor: '#854B50',
         data: yLlValues,
         label: '$/gal'
         }]
@@ -280,7 +274,113 @@ var displayCharts = function() {
         },
         title: {
             display: 'true',
-            text: 'LL Fuel Prices',
+            text: '100LL Fuel Prices',
+            fontSize: 50
+        },
+        legend: {
+            display: true,
+            labels: {
+                fontSize: 30
+            }
+        }
+    }
+    });
+
+    var tempChartsAreaEl = $("<div>").addClass("charts-area");
+
+    var tempCanvasEl = $("<canvas>").attr("id","tempChart");
+    tempChartsAreaEl.append(tempCanvasEl);
+
+    var tempCarouselItemEl = $("<div>").addClass("carousel-item");
+    tempCarouselItemEl.append(tempChartsAreaEl);
+
+    $(".carousel-inner").append(tempCarouselItemEl);
+
+    new Chart("tempChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [{
+        backgroundColor: '#4E8B9D',
+        data: yTempValues,
+        label: 'Celsius'
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }]
+        },
+        title: {
+            display: 'true',
+            text: 'Temperature',
+            fontSize: 50
+        },
+        legend: {
+            display: true,
+            labels: {
+                fontSize: 30
+            }
+        }
+    }
+    });
+
+
+    // var tempChartsAreaEl = $("<div>").addClass("charts-area");
+
+    // var tempCanvasEl = $("<canvas>").attr("id","tempChart");
+    // tempChartsAreaEl.append(tempCanvasEl);
+
+    // var tempCarouselItemEl = $("<div>").addClass("carousel-item");
+    // tempCarouselItemEl.append(tempChartsAreaEl);
+
+    // $(".carousel-inner").append(tempCarouselItemEl);
+
+    var visibilityChartsAreaEl = $("<div>").addClass("charts-area");
+
+    var visibilityCanvasEl = $("<canvas>").attr("id","visibilityChart");
+    visibilityChartsAreaEl.append(visibilityCanvasEl);
+
+    var visibilityCarouselItemEl = $("<div>").addClass("carousel-item");
+    visibilityCarouselItemEl.append(visibilityChartsAreaEl);
+
+    $(".carousel-inner").append(visibilityCarouselItemEl);
+
+    new Chart("visibilityChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [{
+        backgroundColor: '#B85542',
+        data: yVisibilityValues,
+        label: 'Miles',
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontSize: 30,
+                    beginAtZero: true
+                },
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 30
+                }
+            }]
+        },
+        title: {
+            display: 'true',
+            text: 'Visibility',
             fontSize: 50
         },
         legend: {
@@ -293,3 +393,23 @@ var displayCharts = function() {
     });
 
 }
+
+$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#airport-list li").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+
+$(".list-group").on('click', 'li.list-group-item',function(){
+    var airportID = this.id.slice(-4);
+    displayAirportData(airportID);
+})
+
+$(".nav-link").on('click',function(){
+    $(".airport-info").empty();
+    $(".home-div").show();
+})
