@@ -232,7 +232,8 @@ var displayCharts = function() {
         title: {
             display: 'true',
             text: 'Jet Fuel Prices',
-            fontSize: 50
+            fontSize: 50,
+            fontColor: 'black'
         },
         legend: {
             display: true,
