@@ -155,7 +155,7 @@ body {
 }
 
 .list-card {
-    height:120px;
+    height:100px;
     overflow-y: scroll;
     text-align: center;
     margin: 0;
