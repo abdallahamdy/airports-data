@@ -6,7 +6,7 @@ A webapp that presents airport data for pilots.
 ## Built With
 * HTML
 * CSS - Bootstrap
-* JavaScript - jQeury
+* JavaScript - jQeury, ChartJS
 
 ## Website
 https://abdallahamdy.github.io/airports-data/
