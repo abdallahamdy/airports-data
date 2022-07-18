@@ -5,6 +5,7 @@
 
 body { 
     max-height: 100vh;
+    background-color: grey;
 }
 
 #weather-icon {
